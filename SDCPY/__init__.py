@@ -84,42 +84,46 @@ class SD:
     """
     server-discord.com (or SD) API commands. Get information about user or servers. 
     """
-    def getGuild(self, DSID, BDSToken):
+    class server:
         """
-        getGuild - Get all guild information
-        Returns JSON data
+        Information about servers
         """
-        DSApi = requests.get(
-            url=f"https://api.server-discord.com/v2/guild/{DSID}",
-            headers={
-                'Content-Type': 'application/json',
-                'Authorization': f'SDC {BDSToken}'
-            }
-        )
-        return DSApi.json()
-    def getPlace(self, DSID, BDSToken):
-        """
-        getGuild - Get guild place in list
-        Returns JSON data
-        """
-        DSApi = requests.get(
-            url=f"https://api.server-discord.com/v2/guild/{DSID}/place",
-            headers={
-                'Content-Type': 'application/json',
-                'Authorization': f'SDC {BDSToken}'
-            }
-        )
-        return DSApi.json()
-    def getRated(self, DSID, BDSToken):
-        """
-        getRated - Get guild rated list
-        Returns JSON data
-        """
-        DSApi = requests.get(
-            url=f"https://api.server-discord.com/v2/guild/{DSID}/rated",
-            headers={
-                'Content-Type': 'application/json',
-                'Authorization': f'SDC {BDSToken}'
-            }
-        )
-        return DSApi.json()
+        def getGuild(self, DSID, BDSToken):
+            """
+            getGuild - Get all guild information
+            Returns JSON data
+            """
+            DSApi = requests.get(
+                url=f"https://api.server-discord.com/v2/guild/{DSID}",
+                headers={
+                    'Content-Type': 'application/json',
+                    'Authorization': f'SDC {BDSToken}'
+                }
+            )
+            return DSApi.json()
+        def getPlace(self, DSID, BDSToken):
+            """
+            getGuild - Get guild place in list
+            Returns JSON data
+            """
+            DSApi = requests.get(
+                url=f"https://api.server-discord.com/v2/guild/{DSID}/place",
+                headers={
+                    'Content-Type': 'application/json',
+                    'Authorization': f'SDC {BDSToken}'
+                }
+            )
+            return DSApi.json()
+        def getRated(self, DSID, BDSToken):
+            """
+            getRated - Get guild rated list
+            Returns JSON data
+            """
+            DSApi = requests.get(
+                url=f"https://api.server-discord.com/v2/guild/{DSID}/rated",
+                headers={
+                    'Content-Type': 'application/json',
+                    'Authorization': f'SDC {BDSToken}'
+                }
+            )
+            return DSApi.json()
