@@ -38,7 +38,7 @@ class BDS:
     #     Кто в здравом уме будет чекать инфу данной команды?!
     #     """
     #     return 
-    def UpdateInfo(self, BDSID, serversC: int, shardsC: int, BDSToken, Debug: bool):
+    def UpdateInfo(self, BDSID, serversC: int, shardsC: int, BDSToken):
         """
         Update info - Updating servers and shards
         """
@@ -46,29 +46,7 @@ class BDS:
                 'servers': serversC,
                 'shards': shardsC
         }
-        if Debug == True:
-            BDSJson = {
-                "url": f'https://api.server-discord.com/v2/bots/{BDSID}/stats',
-                "headers": {
-                    'Content-Type': 'application/json',
-                    'Authorization': f'SDC {BDSToken}'
-                },
-                "data": f"{json.dumps(BDSData)}"
-            }
-            print(f"Check data what will be sended!\n{json.dumps(BDSJson)}\n# If you want to disable this message set Debug=False")
-            time.sleep(6)
-            BDSApi = requests.post(
-                url=f'https://api.server-discord.com/v2/bots/{BDSID}/stats',
-                headers={
-                    'Content-Type': 'application/json',
-                    'Authorization': f'SDC {BDSToken}'
-                    },
-                data=json.dumps(BDSData)
-            )
-            print(f"Status: {BDSApi}")
-            # print(f"JSON DATA: {BDSApi.json()}")
-        else:
-            BDSApi = requests.post(
+        BDSApi = requests.post(
                 url=f'https://api.server-discord.com/v2/bots/{BDSID}/stats',
                 headers={
                     'Content-Type': 'application/json',
@@ -101,6 +79,7 @@ class SD:
                 }
             )
             return DSApi.json()
+
         def getPlace(self, DSID, BDSToken):
             """
             getGuild - Get guild place in list
@@ -114,6 +93,7 @@ class SD:
                 }
             )
             return DSApi.json()
+
         def getRated(self, DSID, BDSToken):
             """
             getRated - Get guild rated list
@@ -121,6 +101,38 @@ class SD:
             """
             DSApi = requests.get(
                 url=f"https://api.server-discord.com/v2/guild/{DSID}/rated",
+                headers={
+                    'Content-Type': 'application/json',
+                    'Authorization': f'SDC {BDSToken}'
+                }
+            )
+            return DSApi.json()
+
+
+    class user:
+        def getRatedS(self, DSID, BDSToken):
+            """
+            getRatedS - Get a list of server id and voting status for them 
+            Returns JSON data
+            """
+            DSApi = requests.get(
+                url=f"https://api.server-discord.com/v2/user/{DSID}/rated",
+                headers={
+                    'Content-Type': 'application/json',
+                    'Authorization': f'SDC {BDSToken}'
+                }
+            )
+            return DSApi.json()
+
+
+    class blacklist:
+        def getWarns(self, DSID, BDSToken):
+            """
+            getWarns - Get member or server warns
+            Returns JSON data
+            """
+            DSApi = requests.get(
+                url=f"https://api.server-discord.com/v2/user/{DSID}/rated",
                 headers={
                     'Content-Type': 'application/json',
                     'Authorization': f'SDC {BDSToken}'
